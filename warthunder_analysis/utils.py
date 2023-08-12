@@ -8,12 +8,17 @@ WT_WIKI_URL = 'https://wiki.warthunder.com/'
 VEHICLE_LINKS_SELECTOR = '#mw-content-text > div.mw-parser-output > table > tbody > tr:not(:first-child) > td:nth-child(2) > a'
 
 
+def data_dir():
+  return os.path.join(os.path.abspath(''), '..', 'data')
+
+
 async def read_file(filename: str):
   async with aiofiles.open(filename, mode='r') as f:
     return await f.read()
 
 
 async def write_file(filename: str, contents: str):
+  os.makedirs(os.path.dirname(filename), exist_ok=True)
   async with aiofiles.open(filename, mode='w') as f:
     return await f.write(contents)
 
