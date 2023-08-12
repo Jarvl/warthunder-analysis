@@ -1,23 +1,28 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 
-def fetch_url(url):
+wt_wiki_url = 'https://wiki.warthunder.com/'
+vehicle_link_selector = '#mw-content-text > div.mw-parser-output > table > tbody > tr:not(:first-child) > td:nth-child(2) > a'
+
+def fetch_url(url: str):
   response = requests.get(url)
   response.raise_for_status()
   return response.text
 
-vehicle_link_selector = '#mw-content-text > div.mw-parser-output > table > tbody > tr:not(:first-child) > td:nth-child(2) > a'
+def dump_list_to_file(items: list, file_path: str, mode='w'):
+  with open(file_path, mode) as f:
+    f.write("\n".join(items))
 
+def generate_premium_ground_vehicle_links():
+  html = fetch_url(f"{wt_wiki_url}Category:Premium_ground_vehicles")
+  soup = BeautifulSoup(html, 'html5lib')
+  a_tags = soup.css.select(vehicle_link_selector)
+  return [f"{wt_wiki_url}{a.get('href').lstrip('/')}" for a in a_tags]
 
-wt_wiki_url = 'https://wiki.warthunder.com/'
-premium_ground_vehicles_html = fetch_url(wt_wiki_url+'Category:Premium_ground_vehicles')
-pgv_soup = BeautifulSoup(premium_ground_vehicles_html, 'html5lib')
-
-vehicle_link_els = pgv_soup.css.select(vehicle_link_selector)
-links = [wt_wiki_url+link.get('href').lstrip('/') for link in vehicle_link_els]
-
-print(links)
-
+pgv_links = generate_premium_ground_vehicle_links()
+pgv_links_file_path = os.path.join(os.path.dirname(__file__), 'data/premium_ground_vehicle_links.txt')
+dump_list_to_file(pgv_links, pgv_links_file_path)
 
 
 """
