@@ -1,2 +1,2 @@
 # warthunder-analysis
-Analysis of War Thunder premium vehicles
+Analysis of War Thunder premium vehicles. Inspired by [this post](https://www.reddit.com/r/Warthunder/comments/bltmwq/i_counted_how_much_would_every_premium_vehicle/) on /r/warthunder.

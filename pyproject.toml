@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "warthunder-analysis"
+version = "0.1.0"
+description = ""
+authors = ["Andrew Jarvis <ajarvis7771@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+beautifulsoup4 = "^4.12.2"
+requests = "^2.31.0"
+lxml = "^4.9.3"
+html5lib = "^1.1"
+warthunder = {path = "../WarThunder", develop = true}
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.7.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
