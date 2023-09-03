@@ -1,6 +1,8 @@
 # War Thunder Analysis
 Analysis of War Thunder premium vehicles. Inspired by [this /r/warthunder post](https://www.reddit.com/r/Warthunder/comments/bltmwq/i_counted_how_much_would_every_premium_vehicle/).
 
+Data can be found in [this Google Sheet](https://docs.google.com/spreadsheets/d/1bdOrNknNPzzmNbHoVuX71kgp6ljsx2lDcg_V8GTKbhE/edit?usp=sharing).
+
 ## Getting started
 
 Install pyenv and required version from `.python-version`.
